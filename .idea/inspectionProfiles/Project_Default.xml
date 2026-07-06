@@ -1,0 +1,146 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="amqp" />
+          <option value="appdirs" />
+          <option value="asn1crypto" />
+          <option value="attrs" />
+          <option value="awscli" />
+          <option value="backports.functools-lru-cache" />
+          <option value="backports.shutil-get-terminal-size" />
+          <option value="billiard" />
+          <option value="boto" />
+          <option value="bs4" />
+          <option value="beautifulsoup4" />
+          <option value="boto3" />
+          <option value="botocore" />
+          <option value="cached-property" />
+          <option value="celery" />
+          <option value="firebase-admin" />
+          <option value="certifi" />
+          <option value="cffi" />
+          <option value="chardet" />
+          <option value="Cheetah3" />
+          <option value="colorama" />
+          <option value="configobj" />
+          <option value="configparser" />
+          <option value="contextlib2" />
+          <option value="coreapi" />
+          <option value="coreschema" />
+          <option value="cryptography" />
+          <option value="cycler" />
+          <option value="Cython" />
+          <option value="decorator" />
+          <option value="defusedxml" />
+          <option value="distro" />
+          <option value="django" />
+          <option value="django-admin" />
+          <option value="django-bulk-update" />
+          <option value="django-cors-headers" />
+          <option value="django-debug-toolbar" />
+          <option value="django-notifs" />
+          <option value="django-oauth-toolkit" />
+          <option value="django-redis" />
+          <option value="django-secure" />
+          <option value="djangorestframework" />
+          <option value="docutils" />
+          <option value="drf-yasg" />
+          <option value="ecdsa" />
+          <option value="enum34" />
+          <option value="futures" />
+          <option value="geographiclib" />
+          <option value="geopy" />
+          <option value="html5lib" />
+          <option value="httplib2" />
+          <option value="idna" />
+          <option value="importlib-metadata" />
+          <option value="inflection" />
+          <option value="ipaddress" />
+          <option value="isodate" />
+          <option value="itypes" />
+          <option value="Jinja2" />
+          <option value="jmespath" />
+          <option value="jose" />
+          <option value="jws" />
+          <option value="kiwisolver" />
+          <option value="kombu" />
+          <option value="lxml" />
+          <option value="Markdown" />
+          <option value="MarkupSafe" />
+          <option value="matplotlib" />
+          <option value="mysqlclient" />
+          <option value="numpy" />
+          <option value="oauthlib" />
+          <option value="opencv-contrib-python" />
+          <option value="openpyxl" />
+          <option value="packaging" />
+          <option value="pandas" />
+          <option value="pandasql" />
+          <option value="pathlib2" />
+          <option value="pdfkit" />
+          <option value="pika" />
+          <option value="Pillow" />
+          <option value="pyasn1" />
+          <option value="pycparser" />
+          <option value="pycryptodome" />
+          <option value="pyfcm" />
+          <option value="pymsteams" />
+          <option value="PyMySQL" />
+          <option value="pyparsing" />
+          <option value="PyPDF2" />
+          <option value="python-dateutil" />
+          <option value="python-jose" />
+          <option value="pytz" />
+          <option value="PyYAML" />
+          <option value="redis" />
+          <option value="reportlab" />
+          <option value="requests" />
+          <option value="requests-toolbelt" />
+          <option value="rsa" />
+          <option value="ruamel.yaml" />
+          <option value="ruamel.yaml.clib" />
+          <option value="s3transfer" />
+          <option value="scandir" />
+          <option value="scikit-learn" />
+          <option value="scipy" />
+          <option value="Shapely" />
+          <option value="simplejson" />
+          <option value="six" />
+          <option value="sklearn" />
+          <option value="soupsieve" />
+          <option value="stream-chat" />
+          <option value="SQLAlchemy" />
+          <option value="sqlparse" />
+          <option value="subprocess32" />
+          <option value="typing" />
+          <option value="tzlocal" />
+          <option value="uritemplate" />
+          <option value="urllib3" />
+          <option value="urwid" />
+          <option value="uWSGI" />
+          <option value="vine" />
+          <option value="webencodings" />
+          <option value="xhtml2pdf" />
+          <option value="xlrd" />
+          <option value="XlsxWriter" />
+          <option value="xlwt" />
+          <option value="xmltodict" />
+          <option value="zeep" />
+          <option value="zipp" />
+          <option value="zope.interface" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStubPackagesAdvertiser" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="djangorestframework" />
+          <option value="pandas" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
