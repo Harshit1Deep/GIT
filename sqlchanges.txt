@@ -1,0 +1,144 @@
+def get_all_trips(from_date, to_date, dev_ids):
+    count = 0
+    if all([from_date, to_date]):
+        sql = """SELECT flight_pk
+                FROM EquipActivityLogs
+                WHERE FLogDate >= '{}'
+                AND FLogDate <= '{}'
+                AND DevId = '{}'
+                AND flight_pk IS NOT NULL group by flight_pk""".format(from_date,to_date,dev_ids[0])
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+Make sure that formatting this SQL query is safe here.
+
+            incoming_result = np_fetch_all(cursor)
+            count = len(incoming_result)
+    return count
+    
+    
+    -----------------------------------------------------------------
+    def get_all_trips_v2(airport, from_date, to_date, dev_ids):
+    flight_query = """SELECT dfsm.LogId FROM DailyFlightSchedule_Merged dfsm where dfsm.OperationUnit = {} and 
+                        (date(dfsm.On_Block_Time) BETWEEN '{from_date}' and '{to_date}' or date(Off_Block_Time) BETWEEN
+                         '{from_date}' and '{to_date}')""".format(airport,from_date=from_date.date(),to_date=to_date.date())
+    flight_pks = ','.join(map(str, [unit.get('LogId') for unit in execute_query(flight_query)]))
+    count = 0
+    if all([from_date, to_date, flight_pks]):
+        sql = """SELECT flight_pk
+                FROM EquipActivityLogs
+                WHERE flight_pk in ({})
+                AND DevId = '{}'
+                AND FLogDate >= '{}'
+                AND FLogDate <= '{}'
+                group by flight_pk""".format(flight_pks, dev_ids[0], from_date, to_date)
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+Make sure that formatting this SQL query is safe here.
+
+            incoming_result = np_fetch_all(cursor)
+            count = len(incoming_result)
+    return count
+    
+    
+    ----------------------
+    
+    def get_all_trips_v3(airport, from_date, to_date, dev_ids):
+    int_from_date = int(from_date.strftime('%Y%m%d'))
+    int_to_date = int(to_date.strftime('%Y%m%d'))
+    count = 0
+    if all([from_date, to_date, int_from_date,int_to_date]):
+        sql = """SELECT count(DISTINCT LogId) FROM TurnaroundOperations WHERE
+                archive_date_init >= {} AND archive_date_init <= {} AND DevId = '{}'
+                AND Actual_Start_Time >= '{}' AND Actual_Start_Time <= '{}'
+                """.format(int_from_date,int_to_date,dev_ids[0], from_date, to_date)
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+Make sure that formatting this SQL query is safe here.
+
+            count = cursor.fetchone()[0]  # Fetch the count value
+    return count
+    
+    
+ ---------------------------------
+def get_all_trips_v6(airport, from_date, to_date, dev_ids):
+
+if all([from_date, to_date, int_from_date,int_to_date]):
+        sql = """SELECT count(DISTINCT LogId) FROM TurnaroundOperations WHERE
+                archive_date_init >= {} AND archive_date_init <= {} AND DevId = '{}'
+                AND Actual_Start_Time >= '{}' AND Actual_Start_Time <= '{}'
+                """.format(int_from_date,int_to_date,dev_ids[0], from_date, to_date)
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+Make sure that formatting this SQL query is safe here.
+
+            count = cursor.fetchone()[0]  # Fetch the cou
+-------------------------------------------------
+def get_all_trips_v6(airport, from_date, to_date, dev_ids):
+    int_from_date = int(from_date.strftime('%Y%m%d'))
+    int_to_date = int(to_date.strftime('%Y%m%d'))
+    count = 0
+    if all([from_date, to_date, int_from_date,int_to_date]):
+        sql = """SELECT count(DISTINCT LogId) FROM TurnaroundOperations WHERE
+                archive_date_init >= {} AND archive_date_init <= {} AND DevId = '{}'
+                AND Actual_Start_Time >= '{}' AND Actual_Start_Time <= '{}'
+                """.format(int_from_date,int_to_date,dev_ids[0], from_date, to_date)
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+Make sure that formatting this SQL query is safe here.
+
+            count = cursor.fetchone()[0]  # Fetch the count value
+    return count
+    
+    ---------------------------
+    def get_data(entity, operation_unit, from_date, to_date, download_data, dev_ids):
+        """
+        entity: Don not remove entity even though not used in code. entity is used for forming of cache key
+        param: download_data: is to delete caching data for download movement api
+        """
+        from_date = datetime.strptime(from_date, datetime_format)
+        from_date_month= int("{}".format(from_date.year) + "0{}".format(from_date.month) if len(str(from_date.month))==1 else str(from_date.month))
+        to_date = datetime.strptime(to_date, datetime_format)
+        from_date_int = int(time.mktime(from_date.timetuple()))
+        to_date_int = int(time.mktime(to_date.timetuple()))
+        table = []
+        total_time = duration_in_seconds(from_date, to_date)
+        total_max_speed = 0
+        total_movement_time = 0
+        total_distance_travelled = 0
+        start_time = datetime.now()
+        logger.info("MovementTrips: Movementtrips query start_time: {}".format(start_time))
+        sql = """SELECT FRefLoc as f_ref_loc,TRefLoc as t_ref_loc,Plot as plot,Duration as duration,MaxSpeed as max_speed,Distance as distance  FROM `MovementTrips` WHERE  yearint = {} and 
+        `MovementTrips`.`FromDateInt` >= '{}' AND  `MovementTrips`.`ToDateInt` <= '{}' AND  `MovementTrips`.`DevId` ='{}'""".format(from_date_month, from_date_int,to_date_int, dev_ids[0])
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+Make sure that formatting this SQL query is safe here.
+
+            incoming_result =np_fetch_all(cursor)
+
+-------------------------------------------------------------
+
+@staticmethod
+    @cache_it(key_prefix="core:fetch_distinct_equipments", timeout=TIMEOUT)
+    def fetch_distinct_equipments(airport):
+        with connections['default'].cursor() as cursor:
+            query = """ select Distinct em.Equipment, em.Equipment_Category from EquipmentMaster em 
+                        where em.OperationUnit = {} """.format(airport)
+            cursor.execute(query)
+Make sure that formatting this SQL query is safe here.
+
+            result = dict_fetch_all(cursor)
+            return resul
+           
+           
+        -------------------
+ def get_all_data_for_excel(entity, airport, **kwargs):
+        from_date = kwargs.get('from_date')
+        to_date = kwargs.get('to_date')
+        main_clause = ScheduleDAL.get_flights_query(entity, airport)
+        main_clause = ScheduleDAL.add_conditions_to_query(main_clause=main_clause, **kwargs)
+        entity_airport_flights = get_entity_airline_mapping_objs(entity, airport)
+        only_dep_flights = ShiftFlightDAL.get_only_dep_flights(airport, from_date, to_date,entity_airport_flights, schedules=True)
+        only_dep_flights = ScheduleDAL.add_conditions_to_query(only_dep_flights, schedules=True, **kwargs)
+        query = "{} UNION {}".format(main_clause, only_dep_flights)
+        with connections['default'].cursor() as cursor:
+            cursor.execute(query)
