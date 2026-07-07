@@ -1,0 +1,223 @@
+GIT gardening commands nobody uses it 
+ $tree=(git write-tree)
+Linux tree=$(git write-tree)
+ $commit=(echo "Initial Commit" | git commit-tree $tree)
+git update-ref HEAD $commit          
+git status output On branch master
+nothing to commit, working tree clean
+
+git branch
+* master
+ git branch bug-fix
+ git branch
+  bug-fix
+* master
+
+git switch bug-fix
+Switched to branch 'bug-fix'
+git status 
+* bug-fix
+  master
+
+ cat HEAD
+ref: refs/heads/bug-fix
+direct create and switch to a new branch 
+git switch -c branch1
+
+
+git checkout branch1
+
+
+git merge bug-fix
+
+
+Merging conflicts 
+
+git merge bug-fix to master when both are different 
+
+git diff --staged difference between staging area  
+
+ git diff bug-fix..master between branches
+git diff e29126c..9c2981f between commits
+
+To temporarily switch between branches use git stash and git stash pop
+git stash
+git stash list 
+git stash save "save name"
+git stash apply 
+git stash apply @{stash[0]}
+git stash drop
+git stash clear
+
+git tag firsttag
+git tag
+firsttag
+git tag -a second -m "Release 1.1" 
+git tag                                                                                                                                    
+firsttag                                                                                                                                                                            
+second                     
+
+
+Merge commits 
+Use rebase 
+git rebase master you get all files from master to this branch without showing all extra commit messages done
+
+ git reflog it will show history of all your commit messages
+
+ git reset --hard cfabc67
+HEAD is now at cfabc67 commit 2.3
+
+
+ git reset --hard HEAD@{1}
+
+git config --list
+
+git remote -v
+git remote add origin https://github.com/Harshit1Deep/GIT.git
+
+git push origin master
+git push origin main
+git push -u origin main - means to upstream your origin branch suppose in GitHub your origin branch is main and in local your branch is master then if you push something to master then by default it will push to main 
+After that you need to write only git push 
+
+
+Do fork of the Open Source Contributions and clone the repo
+
+
+
+1. Setup & Configuration
+git --version              # Check Git version
+git config --global user.name "Your Name"      # Set username
+git config --global user.email "you@example.com" # Set email
+git config --list          # View Git configuration
+git config --global --edit # Edit configuration
+2. Creating & Cloning Repositories
+git init                   # Initialize a new Git repository
+git clone <url>            # Clone a remote repository
+git clone <url> <folder>   # Clone into a specific folder
+3. Checking Repository Status
+git status                 # Show working tree status
+git log                    # Show commit history
+git log --oneline          # Compact commit history
+git log --graph --all      # Visual branch history
+git show <commit-id>       # Show commit details
+git diff                   # Show unstaged changes
+git diff --staged          # Show staged changes
+4. Adding & Committing Changes
+git add <file>             # Stage a specific file
+git add .                 # Stage all changes
+git add -A                # Stage all changes including deletions
+
+git commit -m "message"    # Commit staged changes
+git commit -am "message"   # Add tracked files and commit
+git commit --amend         # Modify the last commit
+5. Viewing & Managing Files
+git ls-files               # List tracked files
+git mv <old> <new>         # Rename/move a file
+git rm <file>              # Remove a file
+git clean -n               # Preview untracked file removal
+git clean -f               # Remove untracked files
+6. Branch Management
+git branch                 # List branches
+git branch <name>          # Create a new branch
+git branch -d <name>       # Delete a branch
+git branch -D <name>       # Force delete branch
+
+git checkout <branch>      # Switch branch
+git checkout -b <branch>   # Create and switch branch
+
+git switch <branch>        # Switch branch (modern command)
+git switch -c <branch>     # Create and switch branch
+7. Merging & Rebasing
+git merge <branch>         # Merge branch into current branch
+git merge --abort           # Cancel merge
+
+git rebase <branch>        # Rebase current branch
+git rebase --continue      # Continue rebase
+git rebase --abort         # Abort rebase
+8. Remote Repository Commands
+git remote -v              # Show remote repositories
+git remote add origin <url> # Add remote repository
+git remote remove origin   # Remove remote
+
+git fetch                  # Download changes without merging
+git pull                   # Fetch and merge changes
+git push                   # Push commits
+git push origin <branch>   # Push a branch
+git push -u origin <branch># Push and set upstream
+git push --force           # Force push
+9. Undoing Changes
+git restore <file>         # Discard file changes
+git restore --staged <file># Unstage a file
+
+git reset <file>           # Remove from staging
+git reset --soft HEAD~1    # Undo commit but keep changes
+git reset --hard HEAD~1    # Remove commit and changes
+
+git revert <commit-id>     # Create a new commit undoing another commit
+10. Stashing Changes
+git stash                  # Temporarily save changes
+git stash list             # List stashes
+git stash pop              # Apply latest stash and remove it
+git stash apply            # Apply stash but keep it
+git stash drop             # Delete stash
+git stash clear            # Delete all stashes
+11. Tags & Releases
+git tag                    # List tags
+git tag <tag-name>         # Create tag
+git tag -a <tag> -m "msg"  # Create annotated tag
+git push origin <tag>      # Push tag
+git push origin --tags     # Push all tags
+git tag -d <tag>           # Delete tag
+12. Comparing Changes
+git diff branch1 branch2   # Compare branches
+git diff HEAD              # Compare with last commit
+git diff <commit1> <commit2>
+13. Finding Information
+git blame <file>           # See who changed each line
+git grep "text"            # Search in repository
+git reflog                 # View history of HEAD changes
+git bisect start           # Find bad commits
+git bisect good            # Mark good commit
+git bisect bad             # Mark bad commit
+14. Submodules
+git submodule add <url>    # Add submodule
+git submodule init         # Initialize submodules
+git submodule update       # Update submodules
+git submodule update --init --recursive
+15. Advanced Commands
+git cherry-pick <commit>   # Apply a specific commit
+git archive                # Create archive
+git worktree add           # Create another working tree
+git reflog                 # Recover lost commits
+git gc                     # Cleanup repository
+git fsck                   # Check repository integrity
+16. Common Daily Git Workflow
+git status
+git pull origin main
+git checkout -b feature-name
+# make changes
+git add .
+git commit -m "Added feature"
+git push origin feature-name
+17. Useful Git Aliases
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.cm commit
+git config --global alias.br branch
+Most-used Git commands to remember:
+git clone
+git status
+git add
+git commit
+git push
+git pull
+git fetch
+git branch
+git checkout / git switch
+git merge
+git rebase
+git stash
+git log
+git diff
+git revert                     
